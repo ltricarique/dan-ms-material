@@ -2,6 +2,7 @@ package ar.edu.utn.frsf.isi.dan.material.model;
 
 import java.math.BigDecimal;
 import java.time.Instant;
+import java.util.Objects;
 
 /**
  * @author Leandro Heraldo Tricarique
@@ -73,11 +74,20 @@ public class MovimientoStock {
 	}
 
 	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
+
+	@Override
 	public boolean equals(Object obj) {
-		if (obj instanceof MovimientoStock)
-			return ((MovimientoStock) obj).getId().equals(id);
-		else
+		if (this == obj)
+			return true;
+		if (obj == null)
 			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		MovimientoStock other = (MovimientoStock) obj;
+		return Objects.equals(id, other.id);
 	}
 
 	@Override

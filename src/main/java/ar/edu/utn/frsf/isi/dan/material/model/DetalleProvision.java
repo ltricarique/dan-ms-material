@@ -1,5 +1,7 @@
 package ar.edu.utn.frsf.isi.dan.material.model;
 
+import java.util.Objects;
+
 /**
  * @author Leandro Heraldo Tricarique
  *
@@ -34,11 +36,20 @@ public class DetalleProvision {
 	}
 
 	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
+
+	@Override
 	public boolean equals(Object obj) {
-		if (obj instanceof DetalleProvision)
-			return ((DetalleProvision) obj).getId().equals(id);
-		else
+		if (this == obj)
+			return true;
+		if (obj == null)
 			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		DetalleProvision other = (DetalleProvision) obj;
+		return Objects.equals(id, other.id);
 	}
 
 	@Override
