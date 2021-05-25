@@ -2,37 +2,57 @@ package ar.edu.utn.frsf.isi.dan.material.model;
 
 import java.util.Objects;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import org.springframework.data.annotation.Immutable;
+
 /**
  * @author Leandro Heraldo Tricarique
  *
  */
-public class Unidad {
-	private Integer id;
+@Entity
+@Immutable
+@Table(name = "UNIDAD", schema = "MS_MATERIAL")
+public class Unidad
+{
+	@Id
+	@Column(name = "ID")
+	private Long id;
+	@Column(name = "DESCRIPCION")
 	private String descripcion;
-	
-	public Integer getId() {
+
+	public Long getId()
+	{
 		return id;
 	}
-	
-	public void setId(Integer id) {
+
+	public void setId(Long id)
+	{
 		this.id = id;
 	}
-	
-	public String getDescripcion() {
+
+	public String getDescripcion()
+	{
 		return descripcion;
 	}
-	
-	public void setDescripcion(String descripcion) {
+
+	public void setDescripcion(String descripcion)
+	{
 		this.descripcion = descripcion;
 	}
 
 	@Override
-	public int hashCode() {
+	public int hashCode()
+	{
 		return Objects.hash(id);
 	}
 
 	@Override
-	public boolean equals(Object obj) {
+	public boolean equals(Object obj)
+	{
 		if (this == obj)
 			return true;
 		if (obj == null)
@@ -44,8 +64,9 @@ public class Unidad {
 	}
 
 	@Override
-	public String toString() {
+	public String toString()
+	{
 		return "Unidad [id=" + id + ", descripcion=" + descripcion + "]";
 	}
-	
+
 }
