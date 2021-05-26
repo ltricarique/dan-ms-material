@@ -2,6 +2,7 @@ package ar.edu.utn.frsf.isi.dan.material.service;
 
 import ar.edu.utn.frsf.isi.dan.material.model.Material;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public interface MaterialService {
@@ -19,8 +20,8 @@ public interface MaterialService {
 
     Material obtenerMaterialPorNombre(String nombre);
 
-    List<Material> obtenerMaterialPorRangoStock(Integer min, Integer max);
+    List<Material> obtenerMaterialPorRangoStock(BigDecimal min, BigDecimal max);
 
-    List<Material> obtenerMaterialPorPrecio(Double precio);
+    List<Material> obtenerMaterialPorPrecio(BigDecimal precio);
 
 }

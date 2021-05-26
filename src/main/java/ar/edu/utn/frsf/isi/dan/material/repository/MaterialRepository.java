@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -12,6 +13,6 @@ import java.util.Optional;
 public interface MaterialRepository extends JpaRepository<Material, Long>
 {
     Material findByNombre(String nombre);
-    List<Material> findByStockActualBetween(Integer minimo, Integer maximo);
-    List<Material> findByPrecio(Double precio);
+    List<Material> findByStockActualBetween(BigDecimal minimo, BigDecimal maximo);
+    List<Material> findByPrecioUnitario(BigDecimal precio);
 }

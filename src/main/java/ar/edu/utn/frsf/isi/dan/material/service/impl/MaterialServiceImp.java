@@ -6,6 +6,7 @@ import ar.edu.utn.frsf.isi.dan.material.service.MaterialService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Service
@@ -46,12 +47,12 @@ public class MaterialServiceImp implements MaterialService {
     }
 
     @Override
-    public List<Material> obtenerMaterialPorRangoStock(Integer min, Integer max) {
+    public List<Material> obtenerMaterialPorRangoStock(BigDecimal min, BigDecimal max) {
         return materialRepository.findByStockActualBetween(min, max);
     }
 
     @Override
-    public List<Material> obtenerMaterialPorPrecio(Double precio) {
-        return materialRepository.findByPrecio(precio);
+    public List<Material> obtenerMaterialPorPrecio(BigDecimal precio) {
+        return materialRepository.findByPrecioUnitario(precio);
     }
 }

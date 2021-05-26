@@ -13,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.math.BigDecimal;
 
 @RestController
 @RequestMapping(Api.MATERIAL_BASE_PATH)
@@ -37,46 +38,46 @@ public class MaterialRest {
 
 //ACTUALIZAR Y CONSULTAR INFORMACION
 
-    @PutMapping(path = Api.MATERIAL_ID_PUT_PATH)
+    @PutMapping(path = "/modificar")
     @Operation(summary = "Actualiza un material.")
     @ApiResponses(value = { @ApiResponse(responseCode = "200", description = "material actualizado"),
             @ApiResponse(responseCode = "400", description = "Solicitud incorrecta"),
             @ApiResponse(responseCode = "401", description = "No autorizado"), @ApiResponse(responseCode = "403", description = "Prohibido"),
             @ApiResponse(responseCode = "404", description = "material inexistente") })
     public ResponseEntity<?> actualizar(@Parameter(description = "material a actualizar") @RequestBody Material material,
-                                        @Parameter(description = "Id del material a actualizar") @PathVariable Long id)
+                                        @RequestParam(name = "id") Long id)
     {
             return ResponseEntity.ok(materialService.actualizarMaterial(material, id));
     }
 
 //CONSULTAR POR NOMBRE, RANGO DE STOCK, PRECIO
 
-    @GetMapping(path = Api.MATERIAL_NOMBRE_GET_PATH)
+    @GetMapping(path = "/nombre")
     @Operation(summary = "Retorna los un material por nombre")
     @ApiResponses(value = { @ApiResponse(responseCode = "200", description = "material recuperado"),
             @ApiResponse(responseCode = "401", description = "No autorizado"), @ApiResponse(responseCode = "403", description = "Prohibido"),
             @ApiResponse(responseCode = "404", description = "material inexistente") })
-    public ResponseEntity<?> obtenerPorNombre(@Parameter(description = "nombre del material") @PathVariable() String nombre)
+    public ResponseEntity<Material> obtenerPorNombre(@RequestParam(name = "nombre") String nombre)
     {
             return ResponseEntity.ok(materialService.obtenerMaterialPorNombre(nombre));
     }
 
-    @GetMapping(path = Api.MATERIAL_RANGO_GET_PATH)
+    @GetMapping(path = "/rangostock")
     @Operation(summary = "Retorna los materiales en cierto rango de stock")
     @ApiResponses(value = { @ApiResponse(responseCode = "200", description = "materiales recuperado"),
             @ApiResponse(responseCode = "401", description = "No autorizado"), @ApiResponse(responseCode = "403", description = "Prohibido"),
             @ApiResponse(responseCode = "404", description = "materiales inexistente") })
-    public ResponseEntity<?> obtenerPorNombre(@Parameter(description = "stock minimo") @PathVariable() Integer min, @Parameter(description = "stock maximo") @PathVariable() Integer max)
+    public ResponseEntity<?> obtenerPorNombre(@RequestParam(name= "minimo") BigDecimal min, @RequestParam(name = "maximo") BigDecimal max)
     {
         return ResponseEntity.ok(materialService.obtenerMaterialPorRangoStock(min, max));
     }
 
-    @GetMapping(path = Api.MATERIAL_PRECIO_GET_PATH)
+    @GetMapping(path = "/precio")
     @Operation(summary = "Retorna los materiales en que cuestan cierto precio")
     @ApiResponses(value = { @ApiResponse(responseCode = "200", description = "materiales recuperado"),
             @ApiResponse(responseCode = "401", description = "No autorizado"), @ApiResponse(responseCode = "403", description = "Prohibido"),
             @ApiResponse(responseCode = "404", description = "materiales inexistente") })
-    public ResponseEntity<?> obtenerPorNombre(@Parameter(description = "precio del material") @PathVariable() Double precio)
+    public ResponseEntity<?> obtenerPorPrecio(@Parameter(description = "precio del material") @RequestParam() BigDecimal precio)
     {
         return ResponseEntity.ok(materialService.obtenerMaterialPorPrecio(precio));
     }
