@@ -3,13 +3,7 @@ package ar.edu.utn.frsf.isi.dan.material.model;
 import java.math.BigDecimal;
 import java.util.Objects;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * @author Leandro Heraldo Tricarique
@@ -38,6 +32,17 @@ public class Material
 	private BigDecimal stockActual;
 	@Column(name = "STOCK_MINIMO")
 	private BigDecimal stockMinimo;
+	@ManyToOne
+	@JoinColumn(name = "ID_UNIDAD", foreignKey = @ForeignKey(name = "FK_MATERIAL_ID_UNIDAD_TO_UNIDAD_ID"))
+	private Unidad unidad;
+
+	public Unidad getUnidad() {
+		return unidad;
+	}
+
+	public void setUnidad(Unidad unidad) {
+		this.unidad = unidad;
+	}
 
 	public Long getId()
 	{
