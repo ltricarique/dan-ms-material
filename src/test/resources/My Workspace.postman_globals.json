@@ -1,0 +1,29 @@
+{
+	"id": "0e742292-9506-46fc-8900-0577ad9da300",
+	"values": [
+		{
+			"key": "server",
+			"value": "localhost:",
+			"enabled": true
+		},
+		{
+			"key": "port",
+			"value": "9001",
+			"enabled": true
+		},
+		{
+			"key": "api",
+			"value": "/api/v1",
+			"enabled": true
+		},
+		{
+			"key": "port3",
+			"value": "9003",
+			"enabled": true
+		}
+	],
+	"name": "My Workspace Globals",
+	"_postman_variable_scope": "globals",
+	"_postman_exported_at": "2021-05-29T21:13:48.325Z",
+	"_postman_exported_using": "Postman/8.5.1"
+}
