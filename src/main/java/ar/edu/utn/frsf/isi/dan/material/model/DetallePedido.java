@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.Objects;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.ForeignKey;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -14,7 +15,7 @@ import javax.persistence.Table;
  * @author Leandro Heraldo Tricarique
  *
  */
-//@Entity
+@Entity
 @Table(name = "DETALLE_PEDIDO", schema = "MS_PEDIDO")
 public class DetallePedido
 {
