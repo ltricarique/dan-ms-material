@@ -15,11 +15,6 @@
 			"key": "api",
 			"value": "/api/v1",
 			"enabled": true
-		},
-		{
-			"key": "port3",
-			"value": "9003",
-			"enabled": true
 		}
 	],
 	"name": "My Workspace Globals",
