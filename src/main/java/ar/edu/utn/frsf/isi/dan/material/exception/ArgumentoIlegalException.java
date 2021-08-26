@@ -3,11 +3,15 @@ package ar.edu.utn.frsf.isi.dan.material.exception;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
+/**
+ * @author Leandro Heraldo Tricarique
+ * @author Francisco Tomas Gautero
+ *
+ */
 @SuppressWarnings("serial")
 @ResponseStatus(value = HttpStatus.BAD_REQUEST)
 public class ArgumentoIlegalException extends RuntimeException
 {
-
 	public ArgumentoIlegalException()
 	{
 		super();

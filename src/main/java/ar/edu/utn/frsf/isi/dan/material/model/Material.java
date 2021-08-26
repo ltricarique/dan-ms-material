@@ -3,10 +3,20 @@ package ar.edu.utn.frsf.isi.dan.material.model;
 import java.math.BigDecimal;
 import java.util.Objects;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 
 /**
  * @author Leandro Heraldo Tricarique
+ * @author Francisco Tomas Gautero
  *
  */
 @Entity
@@ -36,11 +46,13 @@ public class Material
 	@JoinColumn(name = "ID_UNIDAD", foreignKey = @ForeignKey(name = "FK_MATERIAL_ID_UNIDAD_TO_UNIDAD_ID"))
 	private Unidad unidad;
 
-	public Unidad getUnidad() {
+	public Unidad getUnidad()
+	{
 		return unidad;
 	}
 
-	public void setUnidad(Unidad unidad) {
+	public void setUnidad(Unidad unidad)
+	{
 		this.unidad = unidad;
 	}
 
