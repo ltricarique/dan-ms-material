@@ -15,4 +15,5 @@ public interface Api
 	String MATERIAL_GET_NOMBRE_PATH = "/nombre";
 	String MATERIAL_GET_RANGO_STOCK_PATH = "/rangostock";
 	String MATERIAL_GET_PRECIO_PATH = "/precio";
+	String MATERIAL_GET_ALL_PATH = "/listar";
 }

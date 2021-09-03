@@ -1,0 +1,8 @@
+00:24:11.650 [http-nio-9001-exec-1] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/]  : Initializing Spring DispatcherServlet 'dispatcherServlet'
+00:24:11.658 [http-nio-9001-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet  : Initializing Servlet 'dispatcherServlet'
+00:24:11.685 [http-nio-9001-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet  : Completed initialization in 27 ms
+00:27:21.453 [RMI TCP Connection(427)-127.0.0.1] INFO  o.s.b.a.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+00:27:21.745 [RMI TCP Connection(427)-127.0.0.1] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor   : Shutting down ExecutorService 'applicationTaskExecutor'
+00:27:21.747 [RMI TCP Connection(427)-127.0.0.1] INFO  o.s.o.jpa.LocalContainerEntityManagerFactoryBean   : Closing JPA EntityManagerFactory for persistence unit 'default'
+00:27:21.765 [RMI TCP Connection(427)-127.0.0.1] INFO  com.zaxxer.hikari.HikariDataSource                 : HikariPool-1 - Shutdown initiated...
+00:27:21.775 [RMI TCP Connection(427)-127.0.0.1] INFO  com.zaxxer.hikari.HikariDataSource                 : HikariPool-1 - Shutdown completed.

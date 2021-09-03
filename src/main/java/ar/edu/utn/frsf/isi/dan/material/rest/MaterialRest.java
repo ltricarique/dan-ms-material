@@ -2,10 +2,10 @@ package ar.edu.utn.frsf.isi.dan.material.rest;
 
 import java.math.BigDecimal;
 
-import javax.annotation.security.RolesAllowed;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import ar.edu.utn.frsf.isi.dan.material.exception.ArgumentoIlegalException;
+import ar.edu.utn.frsf.isi.dan.material.exception.RecursoNoEncontradoException;
 import ar.edu.utn.frsf.isi.dan.material.model.Material;
 import ar.edu.utn.frsf.isi.dan.material.service.MaterialService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -44,7 +46,7 @@ public class MaterialRest
 	 * @param material
 	 * @return
 	 */
-	@RolesAllowed(Role.EMPLEADO)
+	//	@RolesAllowed(Role.EMPLEADO)
 	@PostMapping
 	@Operation(summary = "Registra un nuevo Material.")
 	@ApiResponses(value = { @ApiResponse(responseCode = "200", description = "Material registrado correctamente"),
@@ -63,7 +65,7 @@ public class MaterialRest
 	 * @param id
 	 * @return
 	 */
-	@RolesAllowed(Role.EMPLEADO)
+	//	@RolesAllowed(Role.EMPLEADO)
 	@PutMapping(path = Api.MATERIAL_PUT_ACTUALIZAR_PATH)
 	@Operation(summary = "Actualiza un material.")
 	@ApiResponses(value = { @ApiResponse(responseCode = "200", description = "Material actualizado"),
@@ -78,7 +80,7 @@ public class MaterialRest
 
 	//CONSULTAR POR NOMBRE, RANGO DE STOCK, PRECIO
 
-	@RolesAllowed(Role.EMPLEADO)
+	//	@RolesAllowed(Role.EMPLEADO)
 	@GetMapping(path = Api.MATERIAL_GET_NOMBRE_PATH)
 	@Operation(summary = "Retorna un material por nombre.")
 	@ApiResponses(value = { @ApiResponse(responseCode = "200", description = "Material recuperado"),
@@ -89,7 +91,7 @@ public class MaterialRest
 		return ResponseEntity.ok(materialService.obtenerMaterialPorNombre(nombre));
 	}
 
-	@RolesAllowed(Role.EMPLEADO)
+	//	@RolesAllowed(Role.EMPLEADO)
 	@GetMapping(path = Api.MATERIAL_GET_RANGO_STOCK_PATH)
 	@Operation(summary = "Retorna los materiales en cierto rango de stock.")
 	@ApiResponses(value = { @ApiResponse(responseCode = "200", description = "Materiales recuperado"),
@@ -100,7 +102,7 @@ public class MaterialRest
 		return ResponseEntity.ok(materialService.obtenerMaterialPorRangoStock(min, max));
 	}
 
-	@RolesAllowed(Role.EMPLEADO)
+	//	@RolesAllowed(Role.EMPLEADO)
 	@GetMapping(path = Api.MATERIAL_GET_PRECIO_PATH)
 	@Operation(summary = "Retorna los materiales que importan un dado monto.")
 	@ApiResponses(value = { @ApiResponse(responseCode = "200", description = "Pateriales recuperado"),
@@ -109,6 +111,32 @@ public class MaterialRest
 	public ResponseEntity<?> obtenerPorPrecio(@Parameter(description = "Precio del material") @RequestParam() BigDecimal precio)
 	{
 		return ResponseEntity.ok(materialService.obtenerMaterialPorPrecio(precio));
+	}
+
+	@GetMapping(path = Api.MATERIAL_GET_ALL_PATH)
+	@Operation(summary = "Retorna todos los materiales registrados.")
+	@ApiResponses(value = { @ApiResponse(responseCode = "200", description = "Materiales registrados"),
+		@ApiResponse(responseCode = "400", description = "Solicitud incorrecta"),
+		@ApiResponse(responseCode = "401", description = "No autorizado"), @ApiResponse(responseCode = "403", description = "Prohibido"),
+		@ApiResponse(responseCode = "404", description = "No existen materiales registrados") })
+	public ResponseEntity<?> listar()
+	{
+		try
+		{
+			return ResponseEntity.ok(materialService.listarMateriales());
+		}
+		catch (ArgumentoIlegalException e)
+		{
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+		}
+		catch (RecursoNoEncontradoException e)
+		{
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+		}
+		catch (Exception e)
+		{
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+		}
 	}
 
 	@GetMapping(path = "/instancia")
